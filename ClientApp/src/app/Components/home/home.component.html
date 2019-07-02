@@ -1,0 +1,39 @@
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div *ngIf="images" class="carousel-inner" role="listbox" style="max-width:900px; max-height:600px !important; margin:20px;">
+      <div class="carousel-item active">
+       <a [routerLink]="'/info/'+images[0].id" routerLinkActive="active">
+        <img class="d-block w-100" [src]="createImgPath(images[0].path)" alt="First slide">
+        </a>
+      </div>
+      <div class="carousel-item">
+          <a [routerLink]="'/info/'+images[1].id" routerLinkActive="active">
+        <img class="d-block w-100" [src]="createImgPath(images[1].path)" alt="Second slide">
+      </a>
+      </div>
+      <div class="carousel-item">
+          <a [routerLink]="'/info/'+images[2].id" routerLinkActive="active">
+        <img class="d-block w-100" [src]="createImgPath(images[2].path)" alt="Third slide">
+      </a>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+
+<h1 class="cover-heading">Wgraj zdjęcie!</h1>
+<p class="lead">Na tej stronie możesz wgrać zdjęcie zawierające ludzkie twarzy aby przeanalizować je i sprawdzić jakie emocje towarzyszą ludziom na zdjęciu.</p>
+<p class="lead">
+  <a [routerLink]="'/analyze'" class="btn btn-lg btn-secondary">Zacznij!</a>
+</p>

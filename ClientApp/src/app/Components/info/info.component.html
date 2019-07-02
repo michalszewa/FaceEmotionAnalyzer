@@ -1,0 +1,24 @@
+<div img *ngIf="image; else fallback" class="all">
+  <div class ="wrap">
+  <img [src]="createImgPath(image.path)" alt="uploaded photo">
+  <div *ngFor="let face of faces">
+    <span class="bordeer" 
+    ngbPopover="Płeć: {{face.gender === 'male' ? 'mężczyzna' : 'kobieta'}}, Wiek: {{face.age}}" 
+    popoverTitle="Informacje" placement="top" 
+    [ngClass]="{ 'man':face.gender === 'male', 'woman':face.gender === 'female'}"
+    [ngStyle]="{'top.px': face.top, 'left.px': face.left, 'height.px':face.height, 'width.px':face.width}">
+  </span>
+</div>
+</div>
+<div class="chart">
+<app-chart [image]="image"></app-chart>
+</div>
+<p class="lead">
+    <a class="btn btn-lg btn-secondary" style="background-color:forestgreen;" (click)="publicate(image)">Opublikuj</a>
+    <a [routerLink]="'/analyze'" class="btn btn-lg btn-secondary">Jeszcze raz</a>
+  </p>
+</div>
+<ng-template #fallback>
+  Nie wgrałeś żadnego zdjęcia
+  <a [routerLink]="'/analyze'" class="btn btn-lg btn-secondary">Wgraj</a>
+</ng-template>

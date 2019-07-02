@@ -1,0 +1,21 @@
+.dropzone {
+    border: 3px dashed #00a1f1;
+    background: rgb(255, 240, 240);
+    margin-left: 100px;
+    border-radius: 5px;
+    max-width: 600px;
+    max-height: 600px;
+    color:black;
+}
+
+    .dropzone .dz-message {
+        font-weight: 350;
+    }
+
+        .dropzone .dz-message .note {
+            font-family: sans-serif;
+            font-size: 18px;
+            font-weight: 200;
+            display: block;
+            margin-top: 1.5rem;
+        }

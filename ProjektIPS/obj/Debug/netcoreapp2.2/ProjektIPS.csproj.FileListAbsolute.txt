@@ -1,0 +1,14 @@
+C:\Users\Michaa\source\repos\ProjektIPS\ProjektIPS\bin\Debug\netcoreapp2.2\ProjektIPS.deps.json
+C:\Users\Michaa\source\repos\ProjektIPS\ProjektIPS\bin\Debug\netcoreapp2.2\ProjektIPS.runtimeconfig.json
+C:\Users\Michaa\source\repos\ProjektIPS\ProjektIPS\bin\Debug\netcoreapp2.2\ProjektIPS.runtimeconfig.dev.json
+C:\Users\Michaa\source\repos\ProjektIPS\ProjektIPS\bin\Debug\netcoreapp2.2\ProjektIPS.dll
+C:\Users\Michaa\source\repos\ProjektIPS\ProjektIPS\bin\Debug\netcoreapp2.2\ProjektIPS.pdb
+C:\Users\Michaa\source\repos\ProjektIPS\ProjektIPS\obj\Debug\netcoreapp2.2\ProjektIPS.csprojAssemblyReference.cache
+C:\Users\Michaa\source\repos\ProjektIPS\ProjektIPS\obj\Debug\netcoreapp2.2\ProjektIPS.csproj.CoreCompileInputs.cache
+C:\Users\Michaa\source\repos\ProjektIPS\ProjektIPS\obj\Debug\netcoreapp2.2\ProjektIPS.RazorAssemblyInfo.cache
+C:\Users\Michaa\source\repos\ProjektIPS\ProjektIPS\obj\Debug\netcoreapp2.2\ProjektIPS.RazorAssemblyInfo.cs
+C:\Users\Michaa\source\repos\ProjektIPS\ProjektIPS\obj\Debug\netcoreapp2.2\ProjektIPS.AssemblyInfoInputs.cache
+C:\Users\Michaa\source\repos\ProjektIPS\ProjektIPS\obj\Debug\netcoreapp2.2\ProjektIPS.AssemblyInfo.cs
+C:\Users\Michaa\source\repos\ProjektIPS\ProjektIPS\obj\Debug\netcoreapp2.2\ProjektIPS.RazorTargetAssemblyInfo.cache
+C:\Users\Michaa\source\repos\ProjektIPS\ProjektIPS\obj\Debug\netcoreapp2.2\ProjektIPS.dll
+C:\Users\Michaa\source\repos\ProjektIPS\ProjektIPS\obj\Debug\netcoreapp2.2\ProjektIPS.pdb

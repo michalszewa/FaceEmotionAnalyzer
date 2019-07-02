@@ -1,0 +1,4 @@
+<div class="dropzone" [dropzone]="config" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></div>
+<div *ngIf="uploaded" class="lead">
+    <div class="btn btn-lg btn-secondary">Sprawdź</div>
+</div>

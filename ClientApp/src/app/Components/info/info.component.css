@@ -1,0 +1,43 @@
+
+.wrap {
+    position:relative;
+   /* height: 700px;
+    width: 700px;
+    */
+    text-align: center;
+    display: inline-block;
+}
+.bordeer {
+    position:absolute;
+    display:block;
+}
+
+.man {
+    border:dashed 5px blue;
+}
+
+.man:hover{
+    border:dotted 5px rgb(6, 6, 160);
+}
+
+.woman {
+    border:dashed 5px rgb(243, 122, 243);
+}
+
+.woman:hover {
+    border:dotted 5px rgb(197, 29, 197);
+}
+
+
+:host >>> .popover {
+    background-color: white;
+    color: black;
+  }
+
+  .chart{
+      margin: 20px;
+  }
+
+  .btn{
+      margin: 20px;
+  }
