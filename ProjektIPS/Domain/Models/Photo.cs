@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjektIPS.Models
 {
-    public class Image
+    public class Photo
     {
         public virtual List<Face> Faces { get; set; }
 

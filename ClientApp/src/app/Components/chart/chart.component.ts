@@ -29,9 +29,9 @@ this.barChartType = 'bar';
 this.barChartLegend = true;
 
 
-var e1 = this.image.anger; var e2 = this.image.contempt; var e3 = this.image.disgust; var e4 = this.image.fear; var e5 = this.image.happiness;var e6 = this.image.neutral;var e7 = this.image.sadness;var e8 = this.image.surprise;
-let list: Array<number> = [e1,e2,e3,e4,e5,e6,e7,e8];
-//let list: Array<number> = [10,5,20,4,6,8,9,2];
+//var e1 = this.image.anger; var e2 = this.image.contempt; var e3 = this.image.disgust; var e4 = this.image.fear; var e5 = this.image.happiness;var e6 = this.image.neutral;var e7 = this.image.sadness;var e8 = this.image.surprise;
+//let list: Array<number> = [e1,e2,e3,e4,e5,e6,e7,e8];
+let list: Array<number> = [10,5,20,4,6,8,9,2];
 this.barChartData[0].data = list;
 }
 

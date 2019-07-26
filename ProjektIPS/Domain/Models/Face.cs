@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProjektIPS.Models
 {
     public class Face
     {
-        [ForeignKey("ImageId")]
-        public virtual Image Image { get; set; }
+        [ForeignKey("PhotoId")]
+        public virtual Photo Photo { get; set; }
 
         [Required]
         [Key]
         public int Id { get; set; }
-        public int ImageId { get; set; }
+        public int PhotoId { get; set; }
         public int Top { get; set; }
         public int Left { get; set; }
         public int Height { get; set; }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ProjektIPS.Models
 {
-    public class FaceApiResponse
+    public class FaceApiViewModel
     {
         public class FaceRectangle
         {

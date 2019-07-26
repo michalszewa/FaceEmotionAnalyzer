@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ProjektIPS.Domain.Services;
 using ProjektIPS.Models;
 
 namespace ProjektIPS.Controllers
@@ -14,92 +15,69 @@ namespace ProjektIPS.Controllers
     public class ImageController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly IPhotoService _photoService;
 
-        public ImageController(ApplicationDbContext context)
+        public ImageController(ApplicationDbContext context, IPhotoService photoService)
         {
             _context = context;
+            _photoService = photoService;
         }
 
         // GET latest publicated images
         // GET: api/Image/Latest/5
         [HttpGet("Latest/{numberOfImages:int?}")]
-        public async Task<ActionResult<IEnumerable<Image>>> GetImages(int num = 3)
+        public async Task<ActionResult<IEnumerable<Photo>>> GetImages(int num = 3)
         {
-            return await _context.Images.Where(x => x.Publicate == true).OrderByDescending(s => s.PublicationTime).Take(num).ToListAsync();    
+            var photos = await _photoService.ListAsync();
+            var latestPublicatedPhotos = photos.Where(x => x.Publicate == true).OrderByDescending(s => s.PublicationTime).Take(num).ToList();
+            return latestPublicatedPhotos;
         }
 
         // GET: api/Image/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Image>> GetImage(int id)
+        public async Task<ActionResult<Photo>> GetImage(int id)
         {
-            var image = await _context.Images.FindAsync(id);
+            var photo = await _photoService.GetAsync(id);
 
-            if (image == null)
+            if (photo == null)
             {
                 return NotFound();
             }
 
-            return image;
+            return photo;
         }
 
         // PUT: api/Image/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutImage(int id, Image image)
+        public async Task<IActionResult> PutImage(int id,[FromBody]Photo resource)
         {
-            if (id != image.Id)
+            if(!ModelState.IsValid)
             {
-                return BadRequest();
-            }
-            _context.Entry(image).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ImageExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return BadRequest("Model not valid");
             }
 
-            return NoContent();
+            var result = await _photoService.UpdateAsync(id, resource);
+
+            if (!result.Success)
+                return BadRequest(result.Message);
+
+            return Ok(result.Photo);
         }
 
         // POST: api/Image
         [HttpPost]
-        public async Task<ActionResult<Image>> PostImage(Image image)
+        public async Task<ActionResult<Photo>> Upload()
         {
-            _context.Images.Add(image);
-            await _context.SaveChangesAsync();
+            if (!ModelState.IsValid)
+                return BadRequest("Model not valid");
 
-            return CreatedAtAction("GetImage", new { id = image.Id }, image);
-        }
+            var file = Request.Form.Files[0];
+            var result = await _photoService.UploadAsync(file);
 
-        // DELETE: api/Image/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Image>> DeleteImage(int id)
-        {
-            var image = await _context.Images.FindAsync(id);
-            if (image == null)
-            {
-                return NotFound();
-            }
+            if (!result.Success)
+                return BadRequest(result.Message);
 
-            _context.Images.Remove(image);
-            await _context.SaveChangesAsync();
-
-            return image;
-        }
-
-        private bool ImageExists(int id)
-        {
-            return _context.Images.Any(e => e.Id == id);
+            return Ok(result.Photo);
         }
     }
 }

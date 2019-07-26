@@ -1,23 +1,28 @@
-﻿using System;
+﻿using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
+using ProjektIPS.Domain.Services;
+using ProjektIPS.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web;
-using ProjektIPS.Models;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Linq;
 
-namespace ProjektIPS.Helpers
+namespace ProjektIPS.Services
 {
-    public class FaceApiHelper
+    public class FaceApiService : IFaceApiService
     {
-        public static async Task<List<Face>> MakeRequest(FaceApiConfig _faceApiConfig, string imageFilePath)
+        private readonly FaceApiConfigHelper _faceApiConfig;
+        public FaceApiService(IOptions<FaceApiConfigHelper> faceConfig)
         {
-            List<FaceApiResponse.FaceInfo> faces;
+            _faceApiConfig = faceConfig.Value;
+        }
+        public async Task<IEnumerable<Face>> MakeRequest(string path)
+        {
+            List<FaceApiViewModel.FaceInfo> faces;
             var client = new HttpClient();
             var queryString = HttpUtility.ParseQueryString(string.Empty);
 
@@ -31,7 +36,7 @@ namespace ProjektIPS.Helpers
             string uri = _faceApiConfig.UriBase + "?" + queryString;
 
             HttpResponseMessage response;
-            byte[] byteData = GetImageAsByteArray(imageFilePath);
+            byte[] byteData = GetImageAsByteArray(path);
 
             using (ByteArrayContent content = new ByteArrayContent(byteData))
             {
@@ -44,13 +49,12 @@ namespace ProjektIPS.Helpers
                 // Get the JSON response.
                 string contentString = await response.Content.ReadAsStringAsync();
 
-                faces = JsonConvert.DeserializeObject<List<FaceApiResponse.FaceInfo>>(contentString);
+                faces = JsonConvert.DeserializeObject<List<FaceApiViewModel.FaceInfo>>(contentString);
             }
-
             return Map(faces);
         }
 
-        private static byte[] GetImageAsByteArray(string imageFilePath)
+        private byte[] GetImageAsByteArray(string imageFilePath)
         {
             using (FileStream fileStream =
                 new FileStream(imageFilePath, FileMode.Open, FileAccess.Read))
@@ -60,11 +64,11 @@ namespace ProjektIPS.Helpers
             }
         }
 
-        private static List<Face> Map(List<FaceApiResponse.FaceInfo> source)
+        private List<Face> Map(List<FaceApiViewModel.FaceInfo> source)
         {
             List<Face> output = new List<Face>();
 
-            foreach(FaceApiResponse.FaceInfo element in source)
+            foreach (FaceApiViewModel.FaceInfo element in source)
             {
                 output.Add(new Face
                 {
@@ -80,7 +84,7 @@ namespace ProjektIPS.Helpers
             return output;
         }
 
-        private static string DetectEmotion(FaceApiResponse.FaceInfo source)
+        private string DetectEmotion(FaceApiViewModel.FaceInfo source)
         {
             Dictionary<string, double> emotions = new Dictionary<string, double>
             {
@@ -98,6 +102,5 @@ namespace ProjektIPS.Helpers
 
             return max;
         }
- 
     }
 }

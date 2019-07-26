@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjektIPS.Models;
 
 namespace ProjektIPS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190725185900_updated scheme")]
+    partial class updatedscheme
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,9 +35,9 @@ namespace ProjektIPS.Migrations
 
                     b.Property<int>("Height");
 
-                    b.Property<int>("ImageId");
-
                     b.Property<int>("Left");
+
+                    b.Property<int>("PhotoId");
 
                     b.Property<int>("Top");
 
@@ -43,12 +45,12 @@ namespace ProjektIPS.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ImageId");
+                    b.HasIndex("PhotoId");
 
                     b.ToTable("Faces");
                 });
 
-            modelBuilder.Entity("ProjektIPS.Models.Image", b =>
+            modelBuilder.Entity("ProjektIPS.Models.Photo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -78,14 +80,14 @@ namespace ProjektIPS.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Images");
+                    b.ToTable("Photos");
                 });
 
             modelBuilder.Entity("ProjektIPS.Models.Face", b =>
                 {
-                    b.HasOne("ProjektIPS.Models.Image", "Image")
+                    b.HasOne("ProjektIPS.Models.Photo", "Photo")
                         .WithMany("Faces")
-                        .HasForeignKey("ImageId")
+                        .HasForeignKey("PhotoId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

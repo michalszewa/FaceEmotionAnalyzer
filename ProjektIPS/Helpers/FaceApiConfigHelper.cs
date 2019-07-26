@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ProjektIPS.Models
 {
-    public class FaceApiConfig
+    public class FaceApiConfigHelper
     {
         public string SubscriptionKey { get; set; }
         public string UriBase { get; set; }

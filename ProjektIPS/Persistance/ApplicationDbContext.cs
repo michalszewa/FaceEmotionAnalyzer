@@ -11,7 +11,7 @@ namespace ProjektIPS.Models
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
         }
-        public DbSet<Image> Images { get; set; }
+        public DbSet<Photo> Photos { get; set; }
         public DbSet<Face> Faces { get; set; }
     }
 }
