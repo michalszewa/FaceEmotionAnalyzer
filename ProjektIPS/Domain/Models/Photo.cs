@@ -8,7 +8,7 @@ namespace ProjektIPS.Models
 {
     public class Photo
     {
-        public virtual List<Face> Faces { get; set; }
+        public List<Face> Faces { get; set; }
 
         [Required]
         [Key]

@@ -7,6 +7,16 @@ namespace ProjektIPS.ViewModels
 {
     public class PhotoViewModel
     {
-        //DTO class for photo 
+        public int Id { get; set; }
+        public string Path { get; set; }
+        public int Anger { get; set; }
+        public int Contempt { get; set; }
+        public int Disgust { get; set; }
+        public int Fear { get; set; }
+        public int Happiness { get; set; }
+        public int Neutral { get; set; }
+        public int Sadness { get; set; }
+        public int Surprise { get; set; }
+        public bool Publicate { get; set; }
     }
 }

@@ -6,7 +6,7 @@ namespace ProjektIPS.Models
     public class Face
     {
         [ForeignKey("PhotoId")]
-        public virtual Photo Photo { get; set; }
+        public Photo Photo { get; set; }
 
         [Required]
         [Key]

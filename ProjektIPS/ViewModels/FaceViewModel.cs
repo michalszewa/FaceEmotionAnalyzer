@@ -7,6 +7,12 @@ namespace ProjektIPS.ViewModels
 {
     public class FaceViewModel
     {
-        //DTO Class for face model
+        public int Top { get; set; }
+        public int Left { get; set; }
+        public int Height { get; set; }
+        public int Width { get; set; }
+        public string Gender { get; set; }
+        public double Age { get; set; }
+        public string Emotion { get; set; }
     }
 }

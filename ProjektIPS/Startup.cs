@@ -19,6 +19,7 @@ using ProjektIPS.Domain.Repositories;
 using ProjektIPS.Services;
 using ProjektIPS.Domain.Services;
 using ProjektIPS.Domain.SeedWork;
+using AutoMapper;
 
 namespace ProjektIPS
 {
@@ -53,6 +54,8 @@ namespace ProjektIPS
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddCors();
+
+            services.AddAutoMapper();
 
         }
 
