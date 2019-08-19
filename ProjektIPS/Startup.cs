@@ -19,6 +19,7 @@ using ProjektIPS.Domain.Repositories;
 using ProjektIPS.Services;
 using ProjektIPS.Domain.Services;
 using ProjektIPS.Domain.SeedWork;
+using ProjektIPS.Helpers;
 using AutoMapper;
 
 namespace ProjektIPS
@@ -36,33 +37,15 @@ namespace ProjektIPS
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<FaceApiConfigHelper>(Configuration.GetSection("AzureFaceApiConfig"));
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddMvc().AddJsonOptions(
-                        options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-                    );
-            services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
-                );
-
-            services.AddScoped<IPhotoRepository, PhotoRepository>();
-
-            services.AddScoped<IPhotoService, PhotoService>();
-            services.AddScoped<IFaceApiService, FaceApiService>();
-
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-            services.AddCors();
-
-            services.AddAutoMapper();
-
+            services.AddCustomMvc()
+                .AddCustomDbContext(Configuration)
+                .AddCustomIntegrations()
+                .AddCustomConfiguration(Configuration);               
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            var webRoot = env.WebRootPath;
 
             if (env.IsDevelopment())
             {
@@ -74,8 +57,10 @@ namespace ProjektIPS
             }
 
             app.UseHttpsRedirection();
-            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+
+            app.UseCors("CorsPolicy");
             app.UseStaticFiles();
+
             app.UseStaticFiles(new StaticFileOptions()
             {
                 FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, @"PhotoResources")),
