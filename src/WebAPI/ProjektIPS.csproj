@@ -19,4 +19,8 @@
     <Folder Include="PhotoResources\Photos\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WebContracts\WebContracts.csproj" />
+  </ItemGroup>
+
 </Project>
