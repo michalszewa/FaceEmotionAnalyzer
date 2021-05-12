@@ -24,7 +24,7 @@
     "angular-popper": "^2.0.1",
     "blueimp-canvas-to-blob": "^3.14.0",
     "bootstrap": "^4.3.1",
-    "chart.js": "^2.8.0",
+    "chart.js": "^2.9.4",
     "ng2-charts": "^2.3.0",
     "ng2-img-max": "^2.1.18",
     "ngx-dropzone-wrapper": "^8.0.0",
